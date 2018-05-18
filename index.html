@@ -5,9 +5,85 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Vue trainings</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 </head>
 <body>
+<!--1-st task-->
+<!--<div id="app">-->
+    <!--<input type="text" v-on:input="changeTitle">-->
+    <!--<p>{{ title }}</p>-->
+<!--</div>-->
 
+
+<!-- 2-nd, 3rd, 4-th -->
+<!-- <div id="app"> -->
+<!-- //makes this render only ones -->
+  <!-- <h1 v-once>{{ title }}</h1>
+    <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p> -->
+    <!--v-html tells to render html-code-->
+    <!-- <p v-html="finishedLink"></p>
+</div> -->
+
+
+<!--5-th listening to events -->
+<div id="app">
+  <button v-on:click="increase">Counter</button>
+  <p>{{ counter }}</p>
+</div>
+
+
+
+
+
+<!--1-st, Second task-->
+<!--<script>-->
+    <!--new Vue({-->
+        <!--el: '#app',-->
+        <!--data: {-->
+            <!--title: 'Hello world!'-->
+        <!--},-->
+        <!--methods: {-->
+            <!--changeTitle: function (event) {-->
+                <!--this.title = event.target.value;-->
+            <!--}-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+
+
+<!--3-rd,4,5 task  bind link-->
+<!-- <script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'Hello world!',
+            link: 'http://google.com',
+            finishedLink: '<a href="http://google.com">Google</a>'
+        },
+        methods: {
+            sayHello: function () {
+              // return 'Hello!';
+              this.title = 'Hello!';
+              return this.title;
+            }
+        }
+    });
+</script> -->
+
+<!-- Events -->
+<script>
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        increase: function(){
+          this.counter++;
+        }
+      }
+    });
+</script>
 </body>
 </html>
