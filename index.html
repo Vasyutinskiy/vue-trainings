@@ -15,11 +15,28 @@
     <!--<p>{{ title }}</p>-->
 <!--</div>-->
 
+
+<!-- 2-nd, 3rd, 4-th -->
+<!-- <div id="app"> -->
+<!-- //makes this render only ones -->
+  <!-- <h1 v-once>{{ title }}</h1>
+    <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p> -->
+    <!--v-html tells to render html-code-->
+    <!-- <p v-html="finishedLink"></p>
+</div> -->
+
+
+<!--5-th listening to events -->
 <div id="app">
-    <p>{{ title }}</p>
+  <button v-on:click="increase">Counter</button>
+  <p>{{ counter }}</p>
 </div>
 
-<!--Second task-->
+
+
+
+
+<!--1-st, Second task-->
 <!--<script>-->
     <!--new Vue({-->
         <!--el: '#app',-->
@@ -34,17 +51,38 @@
     <!--});-->
 <!--</script>-->
 
-<script>
+
+<!--3-rd,4,5 task  bind link-->
+<!-- <script>
     new Vue({
         el: '#app',
         data: {
-            title: 'Hello world!'
+            title: 'Hello world!',
+            link: 'http://google.com',
+            finishedLink: '<a href="http://google.com">Google</a>'
         },
         methods: {
-            sayHello = function () {
-                
+            sayHello: function () {
+              // return 'Hello!';
+              this.title = 'Hello!';
+              return this.title;
             }
         }
+    });
+</script> -->
+
+<!-- Events -->
+<script>
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        increase: function(){
+          this.counter++;
+        }
+      }
     });
 </script>
 </body>
