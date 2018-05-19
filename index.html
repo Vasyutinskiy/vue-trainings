@@ -25,31 +25,39 @@
     <!-- <p v-html="finishedLink"></p>
 </div> -->
 
-
-<!--5-th listening to events -->
-<div id="app">
-  <button v-on:click="increase">Counter</button>
-  <p>{{ counter }}</p>
-</div>
-
-
-
-
-
 <!--1-st, Second task-->
 <!--<script>-->
-    <!--new Vue({-->
-        <!--el: '#app',-->
-        <!--data: {-->
-            <!--title: 'Hello world!'-->
-        <!--},-->
-        <!--methods: {-->
-            <!--changeTitle: function (event) {-->
-                <!--this.title = event.target.value;-->
-            <!--}-->
-        <!--}-->
-    <!--});-->
+<!--new Vue({-->
+<!--el: '#app',-->
+<!--data: {-->
+<!--title: 'Hello world!'-->
+<!--},-->
+<!--methods: {-->
+<!--changeTitle: function (event) {-->
+<!--this.title = event.target.value;-->
+<!--}-->
+<!--}-->
+<!--});-->
 <!--</script>-->
+
+
+<!--5-th listening to events -->
+<!--<div id="app">-->
+    <!--&lt;!&ndash;<button v-on:click="increase">Counter</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;$event == default Vue variable&ndash;&gt;-->
+    <!--<button v-on:click="increase(2, $event)">Counter</button>-->
+    <!--<button v-on:click="counter++">Counter</button>-->
+    <!--<p>{{ counter }}</p>-->
+    <!--<p v-on:mousemove="updateCoordinates">-->
+        <!--Coordinates: {{ x }} / {{ y }}-->
+        <!--&lt;!&ndash;First method&ndash;&gt;-->
+    <!--&lt;!&ndash; - <span v-on:mousemove="Dummy">Dead spot(without coordinates update)</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;Second method (adding event modifier(.stop))&ndash;&gt;-->
+    <!-- - <span v-on:mousemove.stop="">Dead spot(without coordinates update)</span>-->
+    <!--</p>-->
+    <!--&lt;!&ndash;Adding key of event modifier&ndash;&gt;-->
+    <!--<input type="text" v-on:keyup.enter.space="alertMe">-->
+<!--</div>-->
 
 
 <!--3-rd,4,5 task  bind link-->
@@ -71,19 +79,110 @@
     });
 </script> -->
 
-<!-- Events -->
+<!-- Events 6-th task -->
+<!--<script>-->
+    <!--new Vue({-->
+      <!--el: '#app',-->
+      <!--data: {-->
+        <!--counter: 0,-->
+        <!--x: 0,-->
+        <!--y: 0-->
+      <!--},-->
+      <!--methods: {-->
+        <!--increase: function(step, event){-->
+          <!--// this.counter++;-->
+          <!--this.counter += step;-->
+        <!--},-->
+        <!--updateCoordinates: function (event) {-->
+            <!--this.x = event.clientX;-->
+            <!--this.y = event.clientY;-->
+        <!--},-->
+        <!--alertMe: function () {-->
+            <!--alert('Alert!');-->
+        <!--}  -->
+        <!--//  First method-->
+        <!--// Dummy: function (event) {-->
+        <!--//     event.stopPropagation();-->
+        <!--// }-->
+      <!--}-->
+    <!--});-->
+<!--</script>-->
+
+
+
+<!--7-th Two ways of binding-->
+<!--<div id="app">-->
+    <!--<input type="text" v-model="name">-->
+    <!--<p>{{ name }}</p>-->
+<!--</div>-->
+
+<!--<script>-->
+    <!--new Vue({-->
+        <!--el: "#app",-->
+        <!--data: {-->
+            <!--name: 'Oleg',-->
+        <!--}-->
+    <!--})-->
+<!--</script>-->
+
+<!--task 8-->
+<div id="app">
+    <!--Not so good method-->
+    <!--<button v-on:click="increase">Increase</button>-->
+    <!--<button v-on:click="decrease">Decrease</button>-->
+    <!--<p>Counter: {{ counter }}</p>-->
+    <!--<p>Result: {{ result }}</p>-->
+    <!--Good method-->
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrease</button>
+
+    <!--Appears new method for global new Vue object!!!-->
+    <button v-on:click="secondCounter++">Increase Second</button>
+    <p>Counter: {{ counter }} | {{ secondCounter }}</p>
+    <p>Result: {{ result() }} | {{ output }}</p>
+</div>
+
 <script>
     new Vue({
-      el: '#app',
-      data: {
-        counter: 0
-      },
-      methods: {
-        increase: function(){
-          this.counter++;
+        el: "#app",
+        //Not good method ( a lot of redundant code)
+        // data: {
+        //     counter: 0,
+        //     result: ''
+        // },
+        // methods: {
+        //     increase: function(){
+        //         this.counter++;
+        //         this.result = this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+        //     },
+        //     decrease: function(){
+        //         this.counter--;
+        //         this.result = this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+        //     }
+        // }
+        //Better method with Vue
+        data: {
+            counter: 0,
+            secondCounter: 0
+        },
+        // Appears new method for global new Vue object!!!(Dependent properties!!!
+        //Use it if you want not to cash a result when it doesn't need!
+        computed: {
+            //output  - it's a property not a FUNCTION!
+            output: function () {
+                console.log("Computed");
+                return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+            }
+        },
+        methods: {
+            result: function() {
+                console.log("Method");
+                return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
+            }
         }
-      }
-    });
+    })
 </script>
+
+
 </body>
 </html>
